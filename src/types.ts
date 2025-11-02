@@ -1,41 +1,45 @@
 export interface ReadabilityScore {
-  grade: number;
-  score: number;
+    grade: number;
+    score: number;
 }
 
 export interface TextHighlight {
-  text: string;
-  position: number;
-  type: 'complex' | 'passive' | 'adverb' | 'long-sentence';
-  suggestion?: string;
+    text: string;
+    position: number;
+    type: 'complex' | 'passive' | 'adverb' | 'long-sentence';
+    suggestion?: string;
 }
 
+
+
 export interface ComplexWord extends TextHighlight {
-  syllableCount: number;
-  index: number;
-  type: 'complex';
+    word: string;
+    syllableCount: number;
+    index: number;
+    type: 'complex';
 }
 
 export interface LongSentence extends TextHighlight {
-  wordCount: number;
-  type: 'long-sentence';
+    sentence: string;
+    wordCount: number;
+    type: 'long-sentence';
 }
 
 export interface PassiveVoice extends TextHighlight {
-  type: 'passive';
+    type: 'passive';
 }
 
 export interface AnalysisResult {
-  readability: ReadabilityScore;
-  complexWords: ComplexWord[];
-  longSentences: LongSentence[];
-  passiveVoice: PassiveVoice[];
-  overallScore: number;
+    readability: ReadabilityScore;
+    complexWords: ComplexWord[];
+    longSentences: LongSentence[];
+    passiveVoice: PassiveVoice[];
+    overallScore: number;
 }
 
 export interface Suggestion {
-  type: string;
-  original: string;
-  suggestion: string;
-  reason: string;
+    type: string;
+    original: string;
+    suggestion: string;
+    reason: string;
 }
