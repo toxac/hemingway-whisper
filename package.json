@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@uiw/react-md-editor": "^4.0.8",
+    "buffer": "^6.0.3",
     "electron-squirrel-startup": "^1.0.1",
     "nodejs-whisper": "^0.2.9",
     "react": "^19.2.0",
