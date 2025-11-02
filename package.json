@@ -43,6 +43,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@uiw/react-md-editor": "^4.0.8",
     "electron-squirrel-startup": "^1.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

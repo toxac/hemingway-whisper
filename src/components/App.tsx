@@ -1,13 +1,15 @@
 import React from 'react';
+import MDEditor from '@uiw/react-md-editor';
 
 const App: React.FC = () => {
+  const [value, setValue] = React.useState<string | undefined>("**Hello world!!!**");
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Hello Electron + React + TypeScript!</h1>
-      <p>Welcome to your new app</p>
-      <button onClick={() => alert('React is working!')}>
-        Click me
-      </button>
+    <div className="container">
+      <MDEditor
+        value={value}
+        onChange={setValue}
+      />
+
     </div>
   );
 };
