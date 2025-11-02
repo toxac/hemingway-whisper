@@ -18,3 +18,13 @@ declare module '*.less' {
   const content: string;
   export default content;
 }
+
+interface ElectronAPI {
+  transcribeAudio: (filePath: string) => Promise<string>;
+}
+
+declare global {
+  interface Window {
+    electronAPI: ElectronAPI;
+  }
+}
