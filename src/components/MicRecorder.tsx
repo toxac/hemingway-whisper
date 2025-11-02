@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Buffer } from 'buffer'; 
+import { Buffer } from 'buffer';
 
 interface MicRecorderProps {
   onTranscription: (text: string) => void;
@@ -25,24 +25,16 @@ const MicRecorder: React.FC<MicRecorderProps> = ({ onTranscription }) => {
       const arrayBuffer = await blob.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
 
-      // Use Electron's Node.js modules via 'window.require'
-      const os = window.require('os');
-      const fs = window.require('fs');
-      const path = window.require('path');
+      const fileName = `recording-${Date.now()}.wav`;
+      // Save file via exposed API
+      const filePath = window.electronAPI.saveFile(fileName, buffer);
 
-      const tempDir = os.tmpdir();
-      const filePath = path.join(tempDir, `recording-${Date.now()}.wav`);
-
-      // Write the audio buffer to file
-      fs.writeFileSync(filePath, buffer);
-
-      // Call IPC exposed API to transcribe
+      // Transcribe audio using exposed IPC
       const transcription = await window.electronAPI.transcribeAudio(filePath);
-
       onTranscription(transcription);
 
-      // Optional: cleanup temp file
-      fs.unlinkSync(filePath);
+      // Clean up
+      window.electronAPI.deleteFile(filePath);
     };
 
     mediaRecorder.current.start();
